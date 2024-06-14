@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1717610347 source:c:\users\kenan\documents\kenny\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1718196590 source:d:\kenny\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
