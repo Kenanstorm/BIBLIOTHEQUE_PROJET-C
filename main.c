@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define MAX_LIVRES 100
-#define MAX_EMPRUNTEURS 50
+ = 0;#define MAX_EMPRUNTEURS 50
 #define MAX_TITRE_LIVRE 100
 #define MAX_NOM_AUTEUR 50
 #define MAX_LIVRES_EMPRUNTES 5
@@ -260,18 +260,22 @@ int main() {
     int choix;
     do {
         printf("------------------------------------------------------------\n");
-        printf("\nMenu :\n");
+        printf("                       MENU PRINCIPAL                       \n");
+        printf("------------------------------------------------------------\n");
         printf("1. Ajouter un livre\n");
         printf("2. Emprunter un livre\n");
         printf("3. Rendre un livre\n");
         printf("4. Afficher la liste des livres\n");
         printf("5. Afficher la liste des emprunteurs\n");
         printf("6. Ajouter un emprunteur\n");
-        printf("7. chercher un livre\n");
+        printf("7. Chercher un livre\n");
         printf("8. Quitter\n");
-        printf("Entrez votre choix : \n");
+        printf("------------------------------------------------------------\n");
+        printf("Entrez votre choix : ");
         scanf("%d", &choix);
         getchar();
+        printf("------------------------------------------------------------\n");
+
         switch (choix) {
             case 1: {
                 int id, anneePublication;
@@ -282,7 +286,7 @@ int main() {
                 scanf(" %[^\n]", titre);
                 printf("Entrez l'auteur du livre : ");
                 scanf(" %[^\n]", auteur);
-                printf("Entrez l'ann�e de publication du livre : ");
+                printf("Entrez l'année de publication du livre : ");
                 scanf("%d", &anneePublication);
                 ajouterLivre(id, titre, auteur, anneePublication);
                 break;
@@ -291,7 +295,7 @@ int main() {
                 int idEmprunteur, idLivre;
                 printf("Entrez l'ID de l'emprunteur : ");
                 scanf("%d", &idEmprunteur);
-                printf("Entrez l'ID du livre � emprunter : ");
+                printf("Entrez l'ID du livre à emprunter : ");
                 scanf("%d", &idLivre);
                 emprunterLivre(idEmprunteur, idLivre);
                 break;
@@ -300,7 +304,7 @@ int main() {
                 int idEmprunteur, idLivre;
                 printf("Entrez l'ID de l'emprunteur : ");
                 scanf("%d", &idEmprunteur);
-                printf("Entrez l'ID du livre � rendre : ");
+                printf("Entrez l'ID du livre à rendre : ");
                 scanf("%d", &idLivre);
                 rendreLivre(idEmprunteur, idLivre);
                 break;
@@ -321,24 +325,26 @@ int main() {
                 ajouterEmprunteur(id, nom);
                 break;
             }
-            case 7:
-                {
-                    char titre[MAX_TITRE_LIVRE];
-                    char auteur[MAX_NOM_AUTEUR];
-                    printf("Titre du livre : ");
-                    scanf(" %[^\n]", titre);
-                    printf("Auteur du livre : ");
-                    scanf(" %[^\n]", auteur);
-                    rechercherLivre(titre, auteur);
-                }break;
+            case 7: {
+                char titre[MAX_TITRE_LIVRE];
+                char auteur[MAX_NOM_AUTEUR];
+                printf("Titre du livre : ");
+                scanf(" %[^\n]", titre);
+                printf("Auteur du livre : ");
+                scanf(" %[^\n]", auteur);
+                rechercherLivre(titre, auteur);
+                break;
+            }
             case 8:
                 enregistrerBaseDeDonnees();
                 printf("Au revoir !\n");
                 break;
             default:
-                printf("Choix invalide. Veuillez r�essayer.\n");
+                printf("Choix invalide. Veuillez réessayer.\n");
                 break;
         }
+
+        printf("------------------------------------------------------------\n");
 
     } while (choix != 8);
 
