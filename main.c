@@ -2,17 +2,19 @@
 #include <stdlib.h>
 #include <string.h>
 #define MAX_LIVRES 100
- = 0;#define MAX_EMPRUNTEURS 50
+#define MAX_EMPRUNTEURS 50
 #define MAX_TITRE_LIVRE 100
 #define MAX_NOM_AUTEUR 50
 #define MAX_LIVRES_EMPRUNTES 5
 #define FICHIER_BASE_DE_DONNEES "bibliotheque_base_de_donnees.txt"
+
 /*
         PAR LE GROUPE G30 
         AVEC ILUNGA NGOLE KENAM 
         KALENGA LAILAI MOISE
         KASONGO MAMBWE PASCAL 
 */
+
 typedef struct {
     int id;
     char titre[MAX_TITRE_LIVRE];
@@ -35,7 +37,7 @@ int nombreLivres = 0, nombreEmprunteurs = 0;
 void chargerBaseDeDonnees() {
     FILE* fichier = fopen(FICHIER_BASE_DE_DONNEES, "r");
     if (fichier == NULL) {
-        printf("Erreur d'ouverture du fichier de base de donn�es.\n");
+        printf("Erreur d'ouverture du fichier de base de données.\n");
         return;
     }
 
