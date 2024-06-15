@@ -7,7 +7,12 @@
 #define MAX_NOM_AUTEUR 50
 #define MAX_LIVRES_EMPRUNTES 5
 #define FICHIER_BASE_DE_DONNEES "bibliotheque_base_de_donnees.txt"
-
+/*
+        PAR LE GROUPE G30 
+        AVEC ILUNGA NGOLE KENAM 
+        KALENGA LAILAI MOISE
+        KASONGO MAMBWE PASCAL 
+*/
 typedef struct {
     int id;
     char titre[MAX_TITRE_LIVRE];
