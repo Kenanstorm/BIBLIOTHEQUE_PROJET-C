@@ -35,21 +35,24 @@ Emprunteur emprunteurs[MAX_EMPRUNTEURS];
 int nombreLivres = 0, nombreEmprunteurs = 0;
 
 void chargerBaseDeDonnees() {
+    // Ouvrir le fichier de base de données en mode lecture
     FILE* fichier = fopen(FICHIER_BASE_DE_DONNEES, "r");
     if (fichier == NULL) {
         printf("Erreur d'ouverture du fichier de base de données.\n");
         return;
     }
 
-    // Charger les livres
+    // Charger les livres depuis le fichier
     fscanf(fichier, "%d\n", &nombreLivres);
     for (int i = 0; i < nombreLivres; i++) {
+        // Lire les informations de chaque livre
         fscanf(fichier, "%d,%[^,],%[^,],%d,%d\n", &livres[i].id, livres[i].titre, livres[i].auteur, &livres[i].anneePublication, &livres[i].disponible);
     }
 
-    // Charger les emprunteurs
+    // Charger les emprunteurs depuis le fichier
     fscanf(fichier, "%d\n", &nombreEmprunteurs);
     for (int i = 0; i < nombreEmprunteurs; i++) {
+        // Lire les informations de chaque emprunteur
         fscanf(fichier, "%d,%[^\n]\n", &emprunteurs[i].id, emprunteurs[i].nom);
         int nombreLivresEmpruntes;
         fscanf(fichier, "%d\n", &nombreLivresEmpruntes);
@@ -57,6 +60,7 @@ void chargerBaseDeDonnees() {
         for (int j = 0; j < nombreLivresEmpruntes; j++) {
             int idLivre;
             fscanf(fichier, "%d,", &idLivre);
+            // Associer chaque livre emprunté à l'emprunteur
             for (int k = 0; k < nombreLivres; k++) {
                 if (livres[k].id == idLivre) {
                     emprunteurs[i].livresEmpruntes[j] = &livres[k];
@@ -67,33 +71,39 @@ void chargerBaseDeDonnees() {
         fscanf(fichier, "\n");
     }
 
+    // Fermer le fichier après lecture
     fclose(fichier);
 }
 
 void enregistrerBaseDeDonnees() {
+    // Ouvrir le fichier de base de données en mode écriture
     FILE* fichier = fopen(FICHIER_BASE_DE_DONNEES, "w");
     if (fichier == NULL) {
-        printf("Erreur d'ouverture du fichier de base de donn�es.\n");
+        printf("Erreur d'ouverture du fichier de base de données.\n");
         return;
     }
 
-    // Enregistrer les livres
+    // Enregistrer les livres dans le fichier
     fprintf(fichier, "%d\n", nombreLivres);
     for (int i = 0; i < nombreLivres; i++) {
+        // Écrire les informations de chaque livre
         fprintf(fichier, "%d,%s,%s,%d,%d\n", livres[i].id, livres[i].titre, livres[i].auteur, livres[i].anneePublication, livres[i].disponible);
     }
 
-    // Enregistrer les emprunteurs
+    // Enregistrer les emprunteurs dans le fichier
     fprintf(fichier, "%d\n", nombreEmprunteurs);
     for (int i = 0; i < nombreEmprunteurs; i++) {
+        // Écrire les informations de chaque emprunteur
         fprintf(fichier, "%d,%s\n", emprunteurs[i].id, emprunteurs[i].nom);
         fprintf(fichier, "%d\n", emprunteurs[i].nombreLivresEmpruntes);
         for (int j = 0; j < emprunteurs[i].nombreLivresEmpruntes; j++) {
+            // Écrire les IDs des livres empruntés
             fprintf(fichier, "%d,", emprunteurs[i].livresEmpruntes[j]->id);
         }
         fprintf(fichier, "\n");
     }
 
+    // Fermer le fichier après écriture
     fclose(fichier);
 }
 
