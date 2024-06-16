@@ -1,0 +1,8 @@
+3
+1,stick,ken,2030,1
+2,l'art du trade,ell,2021,1
+1,MOISE,P,2001,1
+1
+8,KENAN
+0
+
